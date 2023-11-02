@@ -18,7 +18,16 @@
 
 enum planck_layers { _QWERTY, _LOWER, _RAISE, _ADJUST, _NUMPAD };
 
-enum planck_keycodes { QWERTY = SAFE_RANGE, BACKLIT, EXT_PLV };
+enum layers {
+  QWERTY = SAFE_RANGE,
+  BACKLIT,
+  EXT_PLV
+};
+
+enum custom_keycodes {
+  MS_SAFE = SAFE_RANGE,
+  MS_LEFT_BOTTOM
+};
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -112,10 +121,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = LAYOUT_planck_grid(
-    KC_TRNS, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO, KC_NO, KC_P7, KC_P8,   KC_P9,   KC_PPLS, KC_TRNS,
-    KC_TRNS, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO, KC_NO, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_TRNS,
-    KC_NO,   MC_0,  QK_MACRO_1, QK_MACRO_2, QK_MACRO_3, KC_NO, KC_NO, KC_P1, KC_P2,   KC_P3,   KC_PAST, KC_PEQL,
-    KC_TRNS, KC_NO, KC_NO,      KC_NO,      KC_NO,      KC_NO, KC_NO, KC_P0, KC_PDOT, KC_PDOT, KC_PSLS, KC_PENT
+    KC_TRNS, KC_NO,           KC_NO,      KC_NO,      KC_NO,      KC_NO, KC_NO, KC_P7, KC_P8,   KC_P9,   KC_PPLS, KC_TRNS,
+    KC_TRNS, KC_NO,           KC_NO,      KC_NO,      KC_NO,      KC_NO, KC_NO, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_TRNS,
+    KC_NO,   MS_LEFT_BOTTOM,  QK_MACRO_1, QK_MACRO_2, QK_MACRO_3, KC_NO, KC_NO, KC_P1, KC_P2,   KC_P3,   KC_PAST, KC_PEQL,
+    KC_TRNS, KC_NO,           KC_NO,      KC_NO,      KC_NO,      KC_NO, KC_NO, KC_P0, KC_PDOT, KC_PDOT, KC_PSLS, KC_PENT
 )
 
 };
@@ -126,24 +135,35 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case QWERTY:
-            if (record->event.pressed) {
-                print("mode just switched to qwerty and this is a huge string\n");
-                set_single_persistent_default_layer(_QWERTY);
-            }
-            return false;
-            break;
-        case BACKLIT:
-            if (record->event.pressed) {
-                register_code(KC_RSFT);
-            } else {
-                unregister_code(KC_RSFT);
-            }
-            return false;
-            break;
-    }
-    return true;
+  switch (keycode) {
+    // case QWERTY:
+    //   if (record->event.pressed) {
+    //     print("mode just switched to qwerty and this is a huge string\n");
+    //     set_single_persistent_default_layer(_QWERTY);
+    //   }
+    //   return false;
+    //   break;
+
+    // case BACKLIT:
+    //   if (record->event.pressed) {
+    //     register_code(KC_RSFT);
+    //   } else {
+    //     unregister_code(KC_RSFT);
+    //   }
+    //   return false;
+    //   break;
+
+    case MS_LEFT_BOTTOM:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+  }
+  return true;
 }
 
 /* clang-format off */
