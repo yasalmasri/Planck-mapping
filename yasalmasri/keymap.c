@@ -27,6 +27,7 @@ enum layers {
 enum custom_keycodes {
   MS_SAFE = SAFE_RANGE,
   MS_LEFT_BOTTOM,
+  MS_RIGHT_BOTTOM,
   MS_TMUX_SESSION,
   MS_TMUX_DETTACH,
   MS_TMUX_SV,
@@ -115,20 +116,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Numpad
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |   7  |   8  |   9  |   +  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |   4  |   5  |   6  |   -  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |   1  |   2  |   3  |   *  | Equal|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |             |   0  |   .  |   .  |   /  | Enter|
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = LAYOUT_planck_grid(
-    KC_TRNS, MS_TMUX_SV,      MS_TMUX_SH,       KC_NO,            KC_NO,      KC_NO, KC_NO, KC_P7, KC_P8,   KC_P9,   KC_PPLS, KC_TRNS,
-    KC_TRNS, KC_NO,           MS_TMUX_SESSION,  MS_TMUX_DETTACH,  KC_NO,      KC_NO, KC_NO, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_TRNS,
-    KC_NO,   MS_LEFT_BOTTOM,  QK_MACRO_1,       QK_MACRO_2,       QK_MACRO_3, KC_NO, KC_NO, KC_P1, KC_P2,   KC_P3,   KC_PAST, KC_PEQL,
-    KC_TRNS, KC_NO,           KC_NO,            KC_NO,            KC_NO,      KC_NO, KC_NO, KC_P0, KC_PDOT, KC_PDOT, KC_PSLS, KC_PENT
+    KC_TRNS, MS_TMUX_SV,      MS_TMUX_SH,       KC_NO,            KC_NO,  KC_NO,  KC_NO,  KC_P7,  KC_P8,    KC_P9,    KC_PPLS,  KC_TRNS,
+    KC_TRNS, KC_NO,           MS_TMUX_SESSION,  MS_TMUX_DETTACH,  KC_NO,  KC_NO,  KC_NO,  KC_P4,  KC_P5,    KC_P6,    KC_PMNS,  KC_TRNS,
+    KC_NO,   MS_LEFT_BOTTOM,  MS_RIGHT_BOTTOM,  KC_NO,            KC_NO,  KC_NO,  KC_NO,  KC_P1,  KC_P2,    KC_P3,    KC_PAST,  KC_PEQL,
+    KC_TRNS, KC_NO,           KC_NO,            KC_NO,            KC_NO,  KC_NO,  KC_NO,  KC_P0,  KC_PDOT,  KC_PDOT,  KC_PSLS,  KC_PENT
 )
 
 };
@@ -161,6 +162,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case MS_RIGHT_BOTTOM:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
       } else {
         // when keycode QMKURL is released
       }
