@@ -26,7 +26,7 @@ enum layers {
 
 enum custom_keycodes {
   MS_SAFE = SAFE_RANGE,
-  MS_SPACE_EQL,
+  MS_SPCEQL,
   MS_LEFT_BOTTOM,
   MS_RIGHT_BOTTOM,
   MS_TMUX_SESSION,
@@ -90,10 +90,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV,  KC_1,         KC_2,    KC_3,    KC_4,    KC_5,    /**/ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,            KC_BSPC,
-    KC_DEL,  MS_SPACE_EQL, KC_NO,   KC_NO,   KC_NO,   KC_NO,   /**/ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DOUBLE_QUOTE, KC_BSLS,
-    KC_TRNS, KC_MPLY,      KC_VOLD, KC_VOLU, KC_MNXT, KC_NO,   /**/ KC_COLN, KC_UNDS, KC_LBRC, KC_RBRC, KC_QUES,         KC_TRNS,
-    _______, _______,      _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU,         KC_MNXT
+    KC_GRV,  KC_1,      KC_2,    KC_3,    KC_4,    KC_5,    /**/ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+    KC_DEL,  MS_SPCEQL, KC_QUES, KC_DQUO, KC_NO,   KC_NO,   /**/ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DQUO, KC_BSLS,
+    KC_TRNS, KC_MPLY,   KC_VOLD, KC_VOLU, KC_MNXT, KC_NO,   /**/ KC_COLN, KC_UNDS, KC_LBRC, KC_RBRC, KC_QUES, KC_TRNS,
+    _______, _______,   _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT
 ),
 
 /* Adjust (Lower + Raise)
@@ -159,7 +159,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //   return false;
     //   break;
 
-    case MS_SPACE_EQL:
+    case MS_SPCEQL:
       if (record->event.pressed) {
         // when keycode QMKURL is pressed
         SEND_STRING(" = ");
