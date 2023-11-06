@@ -26,6 +26,7 @@ enum layers {
 
 enum custom_keycodes {
   MS_SAFE = SAFE_RANGE,
+  MS_SPACE_EQL,
   MS_LEFT_BOTTOM,
   MS_RIGHT_BOTTOM,
   MS_TMUX_SESSION,
@@ -63,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |      |      |      |      |      |      |      | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  F11 |   $  |   %  |   ^  |   -  |      |      |   _  |   +  |   {  |   }  |  |   |
+ * |  F11 |   $  |   %  |   ^  |   -  |      |      |   {  |   }  |      |      |  |   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |   &  |   *  |   (  |   )  |      |      |      |      | Home |  End |  ;   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -72,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_grid(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_EQL,  KC_BSPC,
-    KC_F11,  KC_DLR,  KC_PERC, KC_CIRC, KC_MINS, KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_LCBR, KC_RCBR, KC_PIPE,
+    KC_F11,  KC_DLR,  KC_PERC, KC_CIRC, KC_MINS, KC_PPLS, /**/ KC_NO,   KC_LCBR, KC_RCBR, KC_NO,   KC_NO,   KC_PIPE,
     KC_TRNS, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_HOME, KC_END,  KC_TRNS,
     _______, _______, _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT
 ),
@@ -83,16 +84,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Del  |      |      |      |      |      | Left | Down |  Up  |Right |  "   |  \   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |  :   |  _   |  [   |  ]   |  ?   |      |
+ * |      | Play | Vol- | Vol+ | Next |      |  :   |  _   |  [   |  ]   |  ?   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Play | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid(
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    /**/ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,            KC_BSPC,
-    KC_DEL,  KC_PGUP, KC_PGDN, KC_NO,   KC_NO,   KC_NO,   /**/ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DOUBLE_QUOTE, KC_BSLS,
-    KC_TRNS, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   /**/ KC_COLN, KC_UNDS, KC_LBRC, KC_RBRC, KC_QUES,         KC_TRNS,
-    _______, _______, _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU,         KC_MNXT
+    KC_GRV,  KC_1,         KC_2,    KC_3,    KC_4,    KC_5,    /**/ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,            KC_BSPC,
+    KC_DEL,  MS_SPACE_EQL, KC_NO,   KC_NO,   KC_NO,   KC_NO,   /**/ KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_DOUBLE_QUOTE, KC_BSLS,
+    KC_TRNS, KC_MPLY,      KC_VOLD, KC_VOLU, KC_MNXT, KC_NO,   /**/ KC_COLN, KC_UNDS, KC_LBRC, KC_RBRC, KC_QUES,         KC_TRNS,
+    _______, _______,      _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU,         KC_MNXT
 ),
 
 /* Adjust (Lower + Raise)
@@ -157,6 +158,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //   }
     //   return false;
     //   break;
+
+    case MS_SPACE_EQL:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(" = ");
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
 
     case MS_LEFT_BOTTOM:
       if (record->event.pressed) {
