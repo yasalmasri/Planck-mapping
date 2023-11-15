@@ -56,10 +56,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-------------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,         KC_Q,    KC_W,    KC_E,    KC_R,  KC_T,  /**/ KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
-    LCTL_T(KC_ESC), KC_A,    KC_S,    KC_D,    KC_F,  KC_G,  /**/ KC_H,   KC_J,   KC_K,    KC_L,    KC_QUOT, KC_ENT ,
-    KC_LSFT,        KC_Z,    KC_X,    KC_C,    KC_V,  KC_B,  /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_SCLN,
-    NUMPAD,         KC_LCTL, KC_LALT, KC_LGUI, LOWER, LOWER, /**/ KC_SPC, KC_SPC, RAISE,   KC_DOWN, KC_UP,   KC_RGHT
+    KC_TAB,         KC_Q,    KC_W,   KC_E,    KC_R,  KC_T,   /**/ KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
+    LCTL_T(KC_ESC), KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    KC_QUOT, KC_ENT ,
+    KC_LSFT,        KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_SCLN,
+    KC_LCTL,        KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Colemak
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_grid(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_EQL,  KC_BSPC,
-    KC_F11,  KC_DLR,  KC_PERC, KC_CIRC, KC_MINS, KC_PPLS, /**/ KC_NO,   KC_LCBR, KC_RCBR, KC_NO,   KC_DQUO, KC_PIPE,
+    KC_F11,  KC_CIRC, KC_PERC, KC_DLR,  KC_MINS, KC_PPLS, /**/ KC_NO,   KC_LCBR, KC_RCBR, KC_NO,   KC_DQUO, KC_PIPE,
     KC_TRNS, KC_AMPR, KC_ASTR, KC_NO,   KC_NO,   KC_NO,   /**/ KC_NO,   KC_LPRN, KC_RPRN, KC_HOME, KC_END,  KC_TRNS,
     _______, _______, _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT
 ),
@@ -147,10 +147,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = LAYOUT_planck_grid(
-    KC_TRNS, MS_TMUX_SV,     MS_TMUX_SH,      KC_NO,           KC_NO, KC_NO,   /**/ KC_NO,   KC_P7, KC_P8,   KC_P9,   KC_PPLS, KC_TRNS,
-    KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_NO,   KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_TRNS,
-    KC_NO,   MS_LEFT_BOTTOM, MS_RIGHT_BOTTOM, KC_NO,           KC_NO, KC_NO,   /**/ KC_NO,   KC_P1, KC_P2,   KC_P3,   KC_PAST, KC_PEQL,
-    KC_TRNS, KC_NO,          KC_NO,           KC_NO,           KC_NO, _______, /**/ _______, KC_P0, KC_PDOT, KC_PDOT, KC_PSLS, KC_PENT
+    KC_TRNS, MS_TMUX_SV,     MS_TMUX_SH,      KC_NO,           KC_NO, KC_NO,   /**/ KC_P7, KC_P8, KC_P9,   KC_PPLS, KC_NO, KC_TRNS,
+    KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_P4, KC_P5, KC_P6,   KC_PMNS, KC_NO, KC_TRNS,
+    KC_NO,   MS_LEFT_BOTTOM, MS_RIGHT_BOTTOM, KC_NO,           KC_NO, KC_NO,   /**/ KC_P1, KC_P2, KC_P3,   KC_PAST, KC_NO, KC_PEQL,
+    KC_TRNS, KC_NO,          KC_NO,           KC_NO,           KC_NO, _______, /**/ KC_P0, KC_P0, KC_PDOT, KC_PSLS, KC_NO, KC_PENT
 )
 
 };
