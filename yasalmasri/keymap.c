@@ -29,8 +29,14 @@ enum custom_keycodes {
   QWERTY,
   COLEMAK,
   MS_SPCEQL,
-  MS_LEFT_BOTTOM,
-  MS_RIGHT_BOTTOM,
+
+  WN_LEFT_TOP,
+  WN_TOP,
+  WN_RIGHT_TOP,
+  WN_LEFT_BOTTOM,
+  WN_BOTTOM,
+  WN_RIGHT_BOTTOM,
+
   MS_TMUX_SESSION,
   MS_TMUX_DETTACH,
   MS_TMUX_SV,
@@ -147,10 +153,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = LAYOUT_planck_grid(
-    KC_TRNS, MS_TMUX_SV,     MS_TMUX_SH,      KC_NO,           KC_NO, KC_NO,   /**/ KC_P7, KC_P8, KC_P9,   KC_PPLS, KC_NO, KC_TRNS,
-    KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_P4, KC_P5, KC_P6,   KC_PMNS, KC_NO, KC_TRNS,
-    KC_NO,   MS_LEFT_BOTTOM, MS_RIGHT_BOTTOM, KC_NO,           KC_NO, KC_NO,   /**/ KC_P1, KC_P2, KC_P3,   KC_PAST, KC_NO, KC_PEQL,
-    KC_TRNS, KC_NO,          KC_NO,           KC_NO,           KC_NO, _______, /**/ KC_P0, KC_P0, KC_PDOT, KC_PSLS, KC_NO, KC_PENT
+    KC_TRNS, MS_TMUX_SV,     MS_TMUX_SH,      KC_NO,           KC_NO, KC_NO,   /**/ KC_PAST, KC_P7, KC_P8,   KC_P9, KC_PPLS, KC_TRNS,
+    KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_PSLS, KC_P4, KC_P5,   KC_P6, KC_PMNS, KC_TRNS,
+    KC_NO,   WN_LEFT_BOTTOM, WN_BOTTOM,       WN_RIGHT_BOTTOM, KC_NO, KC_NO,   /**/ KC_NO,   KC_P1, KC_P2,   KC_P3, KC_NO,   KC_NO,
+    KC_TRNS, KC_NO,          KC_NO,           KC_NO,           KC_NO, _______, /**/ _______, KC_P0, KC_PDOT, KC_NO, KC_NO,   KC_NO
 )
 
 };
@@ -187,7 +193,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
-    case MS_LEFT_BOTTOM:
+    case WN_LEFT_TOP:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LGUI));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case WN_TOP:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LGUI) SS_TAP(X_UP) SS_UP(X_LALT) SS_UP(X_LGUI) SS_UP(X_UP));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case WN_RIGHT_TOP:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LGUI));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case WN_LEFT_BOTTOM:
       if (record->event.pressed) {
         // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
@@ -197,7 +233,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
-    case MS_RIGHT_BOTTOM:
+    case WN_BOTTOM:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LGUI) SS_TAP(X_DOWN) SS_UP(X_LALT) SS_UP(X_LGUI) SS_UP(X_DOWN));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case WN_RIGHT_BOTTOM:
       if (record->event.pressed) {
         // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
