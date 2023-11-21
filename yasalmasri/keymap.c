@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_grid(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_EQL,  KC_BSPC,
-    KC_F11,  KC_CIRC, KC_PERC, KC_DLR,  KC_MINS, KC_PPLS, /**/ KC_NO,   KC_LCBR, KC_RCBR, KC_NO,   KC_DQUO, KC_PIPE,
+    KC_F11,  KC_CIRC, KC_PERC, KC_DLR,  KC_MINS, KC_PPLS, /**/ KC_NO,   KC_RCBR, KC_LCBR, KC_NO,   KC_DQUO, KC_PIPE,
     KC_TRNS, KC_AMPR, KC_ASTR, KC_NO,   KC_NO,   KC_NO,   /**/ KC_NO,   KC_LPRN, KC_RPRN, KC_HOME, KC_END,  KC_TRNS,
     _______, _______, _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT
 ),
@@ -153,9 +153,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = LAYOUT_planck_grid(
-    KC_TRNS, MS_TMUX_SV,     MS_TMUX_SH,      KC_NO,           KC_NO, KC_NO,   /**/ KC_PAST, KC_P7, KC_P8,   KC_P9, KC_PPLS, KC_TRNS,
-    KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_PSLS, KC_P4, KC_P5,   KC_P6, KC_PMNS, KC_TRNS,
-    KC_NO,   WN_LEFT_BOTTOM, WN_BOTTOM,       WN_RIGHT_BOTTOM, KC_NO, KC_NO,   /**/ KC_NO,   KC_P1, KC_P2,   KC_P3, KC_NO,   KC_NO,
+    KC_TRNS, MS_TMUX_SV,     MS_TMUX_SH,      KC_NO,           KC_NO, KC_NO,   /**/ KC_NO,   KC_P7, KC_P8,   KC_P9, KC_PPLS, KC_TRNS,
+    KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_PAST, KC_P4, KC_P5,   KC_P6, KC_PMNS, KC_TRNS,
+    KC_NO,   WN_LEFT_BOTTOM, WN_BOTTOM,       WN_RIGHT_BOTTOM, KC_NO, KC_NO,   /**/ KC_PSLS, KC_P1, KC_P2,   KC_P3, KC_NO,   KC_NO,
     KC_TRNS, KC_NO,          KC_NO,           KC_NO,           KC_NO, _______, /**/ _______, KC_P0, KC_PDOT, KC_NO, KC_NO,   KC_NO
 )
 
