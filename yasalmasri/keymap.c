@@ -16,7 +16,7 @@
 
 #include QMK_KEYBOARD_H
 
-enum planck_layers { _QWERTY, _COLEMAK, _LOWER, _RAISE, _ADJUST, _NUMPAD };
+enum planck_layers { _QWERTY, _COLEMAK, _LOWER, _RAISE, _ADJUST, _NUMPAD, _LAYER2 };
 
 // enum layers {
 //   QWERTY = SAFE_RANGE,
@@ -33,6 +33,7 @@ enum custom_keycodes {
   WN_LEFT_TOP,
   WN_TOP,
   WN_RIGHT_TOP,
+  WN_CENTER,
   WN_LEFT_BOTTOM,
   WN_BOTTOM,
   WN_RIGHT_BOTTOM,
@@ -46,6 +47,7 @@ enum custom_keycodes {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define NUMPAD MO(_NUMPAD)
+#define LAYER2 LT(_LAYER2, KC_SCLN)
 
 /* clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -63,8 +65,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,         KC_Q,    KC_W,   KC_E,    KC_R,  KC_T,   /**/ KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
-    LCTL_T(KC_ESC), KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    KC_QUOT, KC_ENT ,
-    KC_LSFT,        KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_SCLN,
+    LCTL_T(KC_ESC), KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    KC_QUOT, KC_ENT,
+    KC_LSFT,        KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, LAYER2,
     KC_LCTL,        KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
@@ -90,9 +92,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |      |      |      |      |      |      |      | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  F11 |   $  |   %  |   ^  |   -  |      |      |   {  |   }  |      |      |  |   |
+ * |  F11 |   $  |   %  |   ^  |   -  |   +  |      |   }  |   {  |      |      |  |   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   &  |   *  |   (  |   )  |      |      |      |      | Home |  End |  ;   |
+ * |      |   &  |   *  |   (  |   )  |      |      |   (  |   )  | Home |  End |  ;   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Play | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
@@ -145,11 +147,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |   7  |   8  |   9  |   +  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   4  |   5  |   6  |   -  | Enter|
+ * |      |      |      |      |      |      |   *  |   4  |   5  |   6  |   -  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   1  |   2  |   3  |   *  | Equal|
+ * |      |      |      |      |      |      |   /  |   1  |   2  |   3  |      | Equal|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |   0  |   .  |   .  |   /  | Enter|
+ * |      |      |      |      |      |             |   0  |   .  |   .  |      | Enter|
  * `-----------------------------------------------------------------------------------'
  */
 [_NUMPAD] = LAYOUT_planck_grid(
@@ -157,6 +159,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_NO,          MS_TMUX_SESSION, MS_TMUX_DETTACH, KC_NO, KC_NO,   /**/ KC_PAST, KC_P4, KC_P5,   KC_P6, KC_PMNS, KC_TRNS,
     KC_NO,   WN_LEFT_BOTTOM, WN_BOTTOM,       WN_RIGHT_BOTTOM, KC_NO, KC_NO,   /**/ KC_PSLS, KC_P1, KC_P2,   KC_P3, KC_NO,   KC_NO,
     KC_TRNS, KC_NO,          KC_NO,           KC_NO,           KC_NO, _______, /**/ _______, KC_P0, KC_PDOT, KC_NO, KC_NO,   KC_NO
+),
+
+/* Layer 2
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_LAYER2] = LAYOUT_planck_grid(
+    KC_TRNS, WN_LEFT_TOP,    WN_TOP,    WN_RIGHT_TOP,    KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS,
+    KC_TRNS, KC_NO,          WN_CENTER, KC_NO,           KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS,
+    KC_NO,   WN_LEFT_BOTTOM, WN_BOTTOM, WN_RIGHT_BOTTOM, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_NO,   KC_NO,          KC_NO,     KC_NO,           KC_NO, _______, /**/ _______, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
 )
 
 };
@@ -247,6 +267,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
+      } else {
+        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case WN_CENTER:
+      if (record->event.pressed) {
+        // when keycode QMKURL is pressed
+        SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LALT) SS_TAP(X_C) SS_UP(X_LGUI) SS_UP(X_LALT));
       } else {
         // when keycode QMKURL is released
       }
