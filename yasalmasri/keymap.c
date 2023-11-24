@@ -33,7 +33,11 @@ enum custom_keycodes {
   WN_LEFT_TOP,
   WN_TOP,
   WN_RIGHT_TOP,
+
+  WN_LEFT_HALF,
   WN_CENTER,
+  WN_RIGHT_HALF,
+
   WN_LEFT_BOTTOM,
   WN_BOTTOM,
   WN_RIGHT_BOTTOM,
@@ -174,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LAYER2] = LAYOUT_planck_grid(
     KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, WN_LEFT_TOP,    WN_TOP,    WN_RIGHT_TOP,    KC_TRNS,
-    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO,          WN_CENTER, KC_NO,           KC_TRNS,
+    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, WN_LEFT_HALF,   WN_CENTER, WN_RIGHT_HALF,   KC_TRNS,
     KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, WN_LEFT_BOTTOM, WN_BOTTOM, WN_RIGHT_BOTTOM, KC_NO,
     KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, _______, /**/ _______, KC_NO, KC_NO,          KC_NO,     KC_NO,           KC_NO
 )
@@ -205,120 +209,98 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case MS_SPCEQL:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(" = ");
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_LEFT_TOP:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LGUI));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_TOP:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LGUI) SS_TAP(X_UP) SS_UP(X_LALT) SS_UP(X_LGUI) SS_UP(X_UP));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_RIGHT_TOP:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LGUI));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_LEFT_BOTTOM:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_LEFT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_BOTTOM:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LGUI) SS_TAP(X_DOWN) SS_UP(X_LALT) SS_UP(X_LGUI) SS_UP(X_DOWN));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_RIGHT_BOTTOM:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LGUI) SS_DOWN(X_LSFT) SS_TAP(X_RIGHT) SS_UP(X_LCTL) SS_UP(X_LGUI) SS_UP(X_LSFT));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case WN_CENTER:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LALT) SS_TAP(X_C) SS_UP(X_LGUI) SS_UP(X_LALT));
-      } else {
-        // when keycode QMKURL is released
+      }
+      return false;
+      break;
+
+    case WN_LEFT_HALF:
+      if (record->event.pressed) {
+        SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LALT) SS_TAP(X_LEFT) SS_UP(X_LGUI) SS_UP(X_LALT));
+      }
+      return false;
+      break;
+
+    case WN_RIGHT_HALF:
+      if (record->event.pressed) {
+        SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LALT) SS_TAP(X_RIGHT) SS_UP(X_LGUI) SS_UP(X_LALT));
       }
       return false;
       break;
 
     case MS_TMUX_SESSION:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_TAP(X_B) SS_UP(X_LCTL) SS_TAP(X_S));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case MS_TMUX_DETTACH:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_TAP(X_B) SS_UP(X_LCTL) SS_TAP(X_D));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case MS_TMUX_SV:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_TAP(X_B) SS_UP(X_LCTL) SS_TAP(X_BACKSLASH));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
 
     case MS_TMUX_SH:
       if (record->event.pressed) {
-        // when keycode QMKURL is pressed
         SEND_STRING(SS_DOWN(X_LCTL) SS_TAP(X_B) SS_UP(X_LCTL) SS_TAP(X_MINUS));
-      } else {
-        // when keycode QMKURL is released
       }
       return false;
       break;
