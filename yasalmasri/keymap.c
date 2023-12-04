@@ -24,6 +24,11 @@ enum planck_layers { _QWERTY, _COLEMAK, _LOWER, _RAISE, _ADJUST, _NUMPAD, _LAYER
 //   EXT_PLV
 // };
 
+// Tap Dance enum
+enum {
+  TD_LSFT_CAPS,
+};
+
 enum custom_keycodes {
   MS_SAFE = SAFE_RANGE,
   QWERTY,
@@ -68,10 +73,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-------------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,         KC_Q,    KC_W,   KC_E,    KC_R,  KC_T,   /**/ KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
-    LCTL_T(KC_ESC), KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    KC_QUOT, KC_ENT,
-    KC_LSFT,        KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_SCLN,
-    KC_LCTL,        KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  LAYER2,  KC_DOWN, KC_UP,   KC_RGHT
+    KC_TAB,           KC_Q,    KC_W,   KC_E,    KC_R,  KC_T,   /**/ KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,    KC_BSPC,
+    LCTL_T(KC_ESC),   KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    KC_QUOT, KC_ENT,
+    TD(TD_LSFT_CAPS), KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH, KC_SCLN,
+    KC_LCTL,          KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  LAYER2,  KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Colemak
@@ -177,10 +182,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LAYER2] = LAYOUT_planck_grid(
-    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, WN_LEFT_TOP,    WN_TOP,    WN_RIGHT_TOP,    KC_TRNS,
-    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, WN_LEFT_HALF,   WN_CENTER, WN_RIGHT_HALF,   KC_TRNS,
-    KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, WN_LEFT_BOTTOM, WN_BOTTOM, WN_RIGHT_BOTTOM, KC_NO,
-    KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, _______, /**/ _______, KC_NO, KC_NO,          KC_NO,     KC_NO,           KC_NO
+    KC_TRNS, KC_NO, KC_NO, KC_NO,  KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   WN_LEFT_TOP,    WN_TOP,    WN_RIGHT_TOP,    KC_TRNS,
+    KC_TRNS, KC_NO, KC_NO, KC_NO,  KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   WN_LEFT_HALF,   WN_CENTER, WN_RIGHT_HALF,   KC_TRNS,
+    KC_NO,   KC_NO, KC_NO, KC_CLR, KC_CLAG, KC_NO,   /**/ KC_WBAK, KC_WFWD, WN_LEFT_BOTTOM, WN_BOTTOM, WN_RIGHT_BOTTOM, KC_NO,
+    KC_NO,   KC_NO, KC_NO, KC_NO,  KC_NO,   _______, /**/ _______, KC_NO,   KC_NO,          KC_NO,     KC_NO,           KC_NO
 )
 
 };
@@ -189,6 +194,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Left Shift, twice for Caps Lock
+    [TD_LSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
