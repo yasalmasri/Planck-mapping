@@ -193,7 +193,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* clang-format on */
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  // return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  switch (get_highest_layer(state)) {
+    case _RAISE:
+      // rgblight_setrgb (0x00,  0x00, 0xFF);
+      rgblight_setrgb (RGB_BLUE);
+      break;
+    case _LOWER:
+      rgblight_setrgb (RGB_RED);
+      break;
+    case _ADJUST:
+      print("here is an adjust");
+      rgblight_setrgb (RGB_CYAN);
+      break;
+    case _NUMPAD:
+      rgblight_setrgb (RGB_GREEN);
+      break;
+    case _LAYER2:
+      rgblight_setrgb (RGB_YELLOW);
+      break;
+    default: //  for any other layers, or the default layer
+      rgblight_setrgb (RGB_MAGENTA);
+      break;
+  }
+  return update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
+  // return state;
 }
 
 // Tap Dance definitions
