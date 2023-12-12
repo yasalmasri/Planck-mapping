@@ -94,9 +94,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  */
 [_LOWER] = LAYOUT_planck_grid(
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_EQL,  KC_BSPC,
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   KC_LPRN, KC_RPRN, KC_EQL,  KC_BSPC,
     KC_F11,  KC_CIRC, KC_PERC, KC_DLR,  KC_MINS, KC_PPLS, /**/ KC_NO,   KC_RCBR, KC_LCBR, KC_NO,   KC_DQUO, KC_PIPE,
-    KC_TRNS, KC_AMPR, KC_ASTR, KC_NO,   KC_NO,   KC_NO,   /**/ KC_NO,   KC_LPRN, KC_RPRN, KC_HOME, KC_END,  KC_TRNS,
+    KC_TRNS, KC_AMPR, KC_ASTR, KC_NO,   KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   KC_NO,   KC_HOME, KC_END,  KC_TRNS,
     _______, _______, _______, _______, _______, _______, /**/ _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MNXT
 ),
 
