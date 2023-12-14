@@ -26,7 +26,7 @@ enum planck_layers { _QWERTY, _COLEMAK, _LOWER, _RAISE, _ADJUST, _NUMPAD, _LAYER
 
 // Tap Dance enum
 enum {
-  TD_LSFT_CAPS,
+  TD_RSFT_CAPS,
 };
 
 enum custom_keycodes {
@@ -57,7 +57,7 @@ enum custom_keycodes {
 #define RAISE MO(_RAISE)
 #define NUMPAD MO(_NUMPAD)
 #define LAYER2 LT(_LAYER2, KC_LEFT)
-#define LSFT_CAPS TD(TD_LSFT_CAPS)
+#define RSFT_CAPS TD(TD_RSFT_CAPS)
 
 /* clang-format off */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,         KC_Q,    KC_W,   KC_E,    KC_R,  KC_T,   /**/ KC_Y,   KC_U,   KC_I,    KC_O,    RCTL_T(KC_P),    KC_BSPC,
     LCTL_T(KC_ESC), KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    RSFT_T(KC_QUOT), KC_ENT,
-    LSFT_CAPS,      KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH,         RSFT_T(KC_SCLN),
+    KC_LSFT,        KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH,         RSFT_CAPS,
     KC_LCTL,        KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  LAYER2,  KC_DOWN, KC_UP,           KC_RGHT
 ),
 
@@ -183,7 +183,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // Tap Dance definitions
 tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Left Shift, twice for Caps Lock
-    [TD_LSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+    [TD_RSFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_CAPS),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
