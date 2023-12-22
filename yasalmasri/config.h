@@ -41,3 +41,5 @@
    - etc.
 */
 // #define MIDI_ADVANCED
+
+#define LEADER_TIMEOUT 500
