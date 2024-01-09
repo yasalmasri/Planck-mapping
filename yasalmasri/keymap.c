@@ -16,7 +16,7 @@
 
 #include QMK_KEYBOARD_H
 
-enum planck_layers { _QWERTY, _COLEMAK, _LOWER, _RAISE, _ADJUST, _NUMPAD, _LAYER2 };
+enum planck_layers { _QWERTY, _COLEMAK, _LOWER, _RAISE, _ADJUST, _NUMPAD, _LAYER2, _LAYER3, _EMPTY };
 
 // enum layers {
 //   QWERTY = SAFE_RANGE,
@@ -56,7 +56,8 @@ enum custom_keycodes {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define NUMPAD MO(_NUMPAD)
-#define LAYER2 LT(_LAYER2, KC_LEFT)
+#define LAYER2 MO(_LAYER2)
+#define LAYER3 MO(_LAYER3)
 #define RSFT_CAPS TD(TD_RSFT_CAPS)
 
 /* clang-format off */
@@ -69,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_Q,    KC_W,   KC_E,    KC_R,  KC_T,   /**/ KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,            KC_BSPC,
     LCTL_T(KC_ESC), KC_A,    KC_S,   KC_D,    KC_F,  KC_G,   /**/ KC_H,   KC_J,   KC_K,    KC_L,    RSFT_T(KC_QUOT), KC_ENT,
     KC_LSFT,        KC_Z,    KC_X,   KC_C,    KC_V,  KC_B,   /**/ KC_N,   KC_M,   KC_COMM, KC_DOT,  RCTL_T(KC_SLSH), RSFT_CAPS,
-    KC_LCTL,        KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  LAYER2,  QK_LEAD, KC_UP,           KC_RGHT
+    KC_LCTL,        KC_LALT, NUMPAD, KC_LGUI, LOWER, KC_SPC, /**/ KC_SPC, RAISE,  LAYER2,  LAYER3,  KC_LEFT,         KC_RGHT
 ),
 
 /* Colemak
@@ -147,6 +148,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS, KC_NO, KC_NO, KC_NO,  KC_NO,   KC_NO,   /**/ KC_NO,   KC_NO,   WN_LEFT_HALF,   WN_CENTER, WN_RIGHT_HALF,   KC_TRNS,
     KC_NO,   KC_NO, KC_NO, KC_CLR, KC_CLAG, KC_NO,   /**/ KC_WBAK, KC_WFWD, WN_LEFT_BOTTOM, WN_BOTTOM, WN_RIGHT_BOTTOM, KC_NO,
     KC_NO,   KC_NO, KC_NO, KC_NO,  KC_NO,   _______, /**/ _______, KC_NO,   KC_NO,          KC_NO,     KC_NO,           KC_NO
+),
+
+/* Layer 3
+ *
+ */
+[_LAYER3] = LAYOUT_planck_grid(
+    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_BTN1, KC_MS_U, KC_BTN2, KC_TRNS,
+    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,
+    KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO,
+    KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, _______, /**/ _______, KC_NO, KC_NO,   KC_NO,   KC_NO, KC_NO
+),
+
+/* Empty Layer
+ *
+ */
+[_EMPTY] = LAYOUT_planck_grid(
+    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS,
+    KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_TRNS,
+    KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   /**/ KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, _______, /**/ _______, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
 )
 
 };
